@@ -2,27 +2,100 @@
 layout: index
 ---
 
-### Welcome to GitHub Pages.
-This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:
+### Why, why not?
+REST is great, actually, it's probably just good.  However, when adopted for mobile, it is problematic.
 
+1. It's chatty -- REST recommends to break down API as resources, but it's too granular.  For mobile communication, the loggest leg of the communcation is the OTA time.  When API are very granular, it demands additional server calls to acomplish complicated tasks. 
+2. It mumbles -- REST recommends using HTTP Response Codes (e.g. 200, 404) as the status response code for API.  It's insufficient because it confuses HTTP protocal status with application status.  
+
+### Batch Request
+
+#### Request
 ```
-$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+{
+  "flow": "series",
+  "error": "terminate",
+  "requests": [
+    {
+      "id": "0",
+      "method": "GET",
+      "path": "/users"
+    },
+    {
+      "id": "1",
+      "method": "POST",
+      "path": "/users",
+      "body": {
+        "name": "John Doe",
+        "email": "john@doe.com"
+      }
+    },
+    {
+      "id": "2",
+      "method": "DELETE",
+      "path": "/users/123"
+    }
+  ]
+}
+```
+#### Response
+```
+{
+  "responses": [
+    {
+      "id": "0",
+      "body": {
+        "status": "success",
+        "data": [
+          {
+            "id": "123",
+            "name": "Jane Doe",
+            "email": "jane@doe.com"
+          },
+          {
+            "id": "456",
+            "name": "Jimmy Doe",
+            "email": "jimmy@doe.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "1",
+      "body": {
+        "status": "success",
+        "data": {
+          "id": "789",
+          "name": "John Doe",
+          "email": "john@doe.com"
+        }
+      }
+    },
+    {
+      "id": "2",
+      "body": {
+        "status": "success"
+      }
+    }
+  ]
+}
 ```
 
-If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.
 
-### Designer Templates
-We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.
+### Better Response
+Coming soon...
 
-### Rather Drive Stick?
-If you prefer to not use the automatic generator, push a branch named `gh-pages` to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.
 
-### Authors and Contributors
-You can @mention a GitHub username to generate a link to their profile. The resulting `<a>` element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (@defunkt), PJ Hyett (@pjhyett), and Tom Preston-Werner (@mojombo) founded GitHub.
+#### Read (`GET /user/`)
 
-### Support or Contact
-Having trouble with Pages? Check out the documentation at http://help.github.com/pages or contact support@github.com and we’ll help you sort it out.
+
+#### Create (`POST /user/`)
+
+#### Update (`PUT /user/{id}`)
+
+#### Delete (`DELETE /user/{id}`)
+
+
+
 
 
