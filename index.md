@@ -11,7 +11,7 @@ REST is great, actually, it's probably just good.  However, when adopted for mob
 ### Batch Request
 
 #### Request
-```
+{% highlight javascript %}
 {
   "flow": "series",
   "error": "terminate",
@@ -37,9 +37,10 @@ REST is great, actually, it's probably just good.  However, when adopted for mob
     }
   ]
 }
-```
+{% endhighlight %}
+
 #### Response
-```
+{% highlight javascript %}
 {
   "responses": [
     {
@@ -79,7 +80,7 @@ REST is great, actually, it's probably just good.  However, when adopted for mob
     }
   ]
 }
-```
+{% endhighlight %}
 
 
 ### Better Response
