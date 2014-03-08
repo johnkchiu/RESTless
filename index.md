@@ -3,9 +3,9 @@ layout: index
 ---
 
 ### Why, why not?
-REST is great, actually, it's probably just good.  However, when adopted for mobile, it is problematic.
+REST is great.  Actually, it's probably just good.  However, when adopted for mobile, it is problematic.
 
-1. It's chatty -- REST recommends to break down API as resources, but it's too granular.  For mobile communication, the loggest leg of the communcation is the OTA time.  When API are very granular, it demands additional server calls to acomplish complicated tasks. 
+1. It's chatty -- REST recommends to break down API as resources, but it's too granular.  For mobile communication, the longest leg of the communcation is the OTA time.  When API are very granular, it demands additional server calls to acomplish complicated tasks. 
 2. It mumbles -- REST recommends using HTTP Response Codes (e.g. 200, 404) as the status response code for API.  It's insufficient because it confuses HTTP protocal status with application status.  
 
 ### Batch Request
